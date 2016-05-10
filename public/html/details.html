@@ -1,0 +1,32 @@
+<nav>
+    <div class="nav-wrapper">
+        <a ui-sref="home" class="brand-logo">myProfile</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li ng-hide="currentUser"><a ui-sref="login">Login</a></li>
+            <li ng-hide="currentUser"><a ui-sref="register">Register</a></li>
+            <li ng-show="currentUser"><a ui-sref="friends">Friends <span class="new badge">{{ pendingRequests.length }}</span></a></li>
+            <li ng-show="currentUser"><a ui-sref="profile">Profile</a></li>
+            <li ng-show="currentUser"><a ui-sref="logout">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6 offset-m3">
+            <div class="card">
+                <div class="card-image">
+                    <img ng-if="profile.image" ng-src="{{ profile.image }}">
+                    <img ng-if="!profile.image" src="http://placehold.it/350x150">
+                    <span class="card-title">{{ profile.username }}</span>
+                </div>
+                <div class="card-content">
+                    <p>{{ profile.biography }}</p>
+                </div>
+                <div class="card-action">
+                    <a ng-repeat="link in profile.links" ng-href="{{ link }}">Link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

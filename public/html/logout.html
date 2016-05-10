@@ -1,0 +1,12 @@
+<nav>
+    <div class="nav-wrapper">
+        <a ui-sref="home" class="brand-logo">myProfile</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li ng-hide="currentUser"><a ui-sref="login">Login</a></li>
+            <li ng-hide="currentUser"><a ui-sref="register">Register</a></li>
+            <li ng-show="currentUser"><a ui-sref="friends">Friends</a></li>
+            <li ng-show="currentUser"><a ui-sref="profile">Profile</a></li>
+            <li class="active" ng-show="currentUser"><a ui-sref="logout">Logout</a></li>
+        </ul>
+    </div>
+</nav>

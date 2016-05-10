@@ -1,0 +1,64 @@
+<nav>
+    <div class="nav-wrapper">
+        <a ui-sref="home" class="brand-logo">myProfile</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li ng-hide="currentUser"><a ui-sref="login">Login</a></li>
+            <li ng-hide="currentUser"><a ui-sref="register">Register</a></li>
+            <li class="active" ng-show="currentUser"><a ui-sref="friends">Friends <span class="new badge">{{ pendingRequests.length }}</span></a></li>
+            <li ng-show="currentUser"><a ui-sref="profile">Profile</a></li>
+            <li ng-show="currentUser"><a ui-sref="logout">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col s6">
+            <h4 class="center">Add a Friend</h4>
+            <form ng-submit="addFriend()">
+                <select class="browser-default" ng-model="userToInvite">
+                    <option ng-repeat="user in users" value="{{ user._id }}">{{ user.username }}</option>
+                </select>
+                <br>
+                <div class="center">
+                    <button type="submit" class="waves-effect waves-light btn">Send Request</button>
+                </div>
+            </form>
+        </div>
+        <div class="col s6">
+            <h4 class="center">Sent Invites</h4>
+            <ul class="collection">
+                <li class="collection-item" ng-repeat="invite in pendingInvites">{{ invite }}</li>
+            </ul>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col s6">
+            <h4 class="center">Pending Requests</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Accept</th>
+                        <th>Reject</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="invite in pendingRequests">
+                        <td>{{ invite.username }}</td>
+                        <td><a class="btn-floating waves-effect waves-light red" ng-click="acceptRequest(invite)"><i class="material-icons">thumb_up</i></a></td>
+                        <td><a class="btn-floating waves-effect waves-light red" ng-click="rejectRequest(invite)"><i class="material-icons">thumb_down</i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col s6">
+            <h4 class="center">Current Friends</h4>
+            <div class="chip" ng-repeat="friend in friends">
+                <img ng-src="{{ friend.image }}">
+                {{ friend.username }}
+            </div>
+        </div>
+    </div>
+</div>

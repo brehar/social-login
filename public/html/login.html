@@ -1,0 +1,39 @@
+<nav>
+    <div class="nav-wrapper">
+        <a ui-sref="home" class="brand-logo">myProfile</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="active" ng-hide="currentUser"><a ui-sref="login">Login</a></li>
+            <li ng-hide="currentUser"><a ui-sref="register">Register</a></li>
+            <li ng-show="currentUser"><a ui-sref="friends">Friends</a></li>
+            <li ng-show="currentUser"><a ui-sref="profile">Profile</a></li>
+            <li ng-show="currentUser"><a ui-sref="logout">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <form class="col s6 offset-s3" ng-submit="loginUser()">
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input placeholder="Username" id="username" type="text" class="validate" ng-model="user.username">
+                    <label for="username">Username</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <input placeholder="Password" id="password" type="password" class="validate" ng-model="user.password">
+                    <label for="password">Password</label>
+                </div>
+                <div class="col s12 center">
+                    <button type="submit" class="waves-effect waves-light btn">Login</button>
+                </div>
+            </div>
+        </form>
+        <div class="col s12 center">
+            <button type="button" class="waves-effect waves-light btn" ng-click="authenticate('github')">Sign In With Github</button>
+            <button type="button" class="waves-effect waves-light btn" ng-click="authenticate('twitter')">Sign In With Twitter</button>
+            <button type="button" class="waves-effect waves-light btn" ng-click="authenticate('google')">Sign In With Google</button>
+        </div>
+    </div>
+</div>
